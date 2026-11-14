@@ -52,11 +52,11 @@ TASCA (fes-la en este orde):
 
 7. Si has fet canvis: crea una branca nova `docs/trim-YYYY-MM` (substituix YYYY-MM pel mes actual),
    commiteja amb missatge en valencia format "[docs] Retall mensual automatic de
-   doc-projecte/DECISIONS.md/doc-projecte/CONEIXEMENT-VIU.md (YYYY-MM)", i obri una Pull Request cap a `main`
+   doc-projecte/DECISIONS.md/doc-projecte/CONEIXEMENT-VIU.md (YYYY-MM)", i obri una Pull Request cap a `PREPRODUCCION`
    amb una descripcio que llisteix explicitament: fitxers tocats, seccions/files retallades,
    reduccio en bytes/percentatge de cada fitxer, i confirmacio que tota la informacio retallada s'ha
    mogut (no esborrat) amb la ubicacio exacta on ha anat cada tros. NO faces mai push directe a
-   `main` -- sempre via PR per a revisio humana.
+   `main` ni a `PREPRODUCCION` -- sempre via PR per a revisio humana.
 
 Restriccions dures: mai canvies el significat d'una decisio o regla, mai elimines una regla
 "NO-NEGOCIABLE" ni cap restriccio critica, mai toques codi (nomes fitxers .md de documentacio), mai

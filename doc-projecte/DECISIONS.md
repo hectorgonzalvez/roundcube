@@ -24,7 +24,7 @@
 
 ## Decisions preses (no reobrir sense motiu fonamentat)
 
-Pendent -exemple de format d'una entrada:
+Exemple de format d'una entrada:
 
 ```
 ### [Tema] — [data]
@@ -38,6 +38,26 @@ NO REOBRIR sense [condició concreta, no "si algú no està d'acord"].
 Revisar quan: [dada que ja existix + llindar, p. ex. "`doc-projecte/REGISTRE-ERRORS.md` suma més de 3
 entrades d'este tipus en un trimestre"] -o "—" si no n'hi ha cap d'honest.
 ```
+
+### MR a GitHub en lloc de TFS — 2026-11-14
+
+Opcions: MR a Azure DevOps / TFS (procediment UA, `ESTANDARDS.md` §9.3) vs. PR a GitHub
+(`hectorgonzalvez/roundcube`).
+Decisió: de moment, les MR es fan a GitHub, cap a `PREPRODUCCION`. La CI de MR és
+`.github/workflows/qualitat.yml`; `azure-pipelines-qualitat.yml` es queda al repositori per a quan
+es torne a TFS. La plantilla de PR és `.github/pull_request_template.md`, còpia de
+`.gitlab/merge_request_templates/Default.md`: un canvi a una s'ha de fer també a l'altra.
+Per què: TFS no té espai per a este projecte.
+Conseqüències: el job de GitHub no porta `comprova-descripcio-mr.js` ni `comprova-origen-mr.js`
+(`instal·la-ci.js` només els genera per a GitLab i Azure): ningú no comprova a la CI que la
+descripció de la PR estiga omplida ni d'on ve una PR a `main`; ho mira qui revisa.
+`/ua-skills:obri-pr` no obri PR a GitHub (només `glab` i `az`): dona l'enllaç i la descripció.
+La rutina cloud (`prompt-auditoria-documentacio.md`) obri les PR cap a `PREPRODUCCION`.
+Branques sense sol·licitud: mentre no hi haja ID, es diuen `SENSE-ID-<descripcio-breu>`.
+Com es verifica: — (la protecció de `main` i `PREPRODUCCION` a GitHub es configura a mà a
+Settings > Branches; `bloqueja-main.sh` només cobrix les sessions de l'agent).
+NO REOBRIR sense que TFS tinga espai per al projecte.
+Revisar quan: —
 
 ## Decisions obertes (prioritzades)
 

@@ -1,0 +1,19 @@
+on:
+  pull_request:
+jobs:
+  qualitat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: node kit-si-ua/ci-plantilla/comprova-documentacio.js --base origin/${{ github.base_ref }} --head HEAD
+      - run: node kit-si-ua/ci-plantilla/comprova-tokens-hardcoded.js --base origin/${{ github.base_ref }} --head HEAD
+      - run: node kit-si-ua/ci-plantilla/comprova-antipatrons.js --base origin/${{ github.base_ref }} --head HEAD
+      - run: node kit-si-ua/ci-plantilla/comprova-frescor.js
+      - run: node kit-si-ua/ci-plantilla/valida-documentacio.js --dir .
+      - run: node kit-si-ua/ci-plantilla/comprova-secrets.js --base origin/${{ github.base_ref }} --head HEAD
+      - run: node kit-si-ua/ci-plantilla/comprova-tracabilitat.js
+      - run: node kit-si-ua/ci-plantilla/comprova-unicode-invisible.js --base origin/${{ github.base_ref }} --head HEAD
+      - run: node kit-si-ua/ci-plantilla/comprova-higiene.js --base origin/${{ github.base_ref }} --head HEAD
