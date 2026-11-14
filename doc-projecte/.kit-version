@@ -1,0 +1,8 @@
+versio: 3.10.1
+generat: 2026-11-12
+pila: cap
+
+# Versió de kit-si-ua/kit-projecte amb què es va generar este kit de documentació.
+# Comprova el desfasament amb:
+#   node kit-si-ua/ci-plantilla/comprova-desfasament.js --cataleg <ruta-al-clon-de-skills-si-ua>
+# En adoptar a mà un canvi de plantilla del catàleg, actualitza la línia 'versio:' d'ací.

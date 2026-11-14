@@ -1,0 +1,40 @@
+{
+  "_comentari": "Mapa de responsabilitat tipus-de-canvi → documentació. Copia'l com a docmap.json a l'arrel del projecte (o passa --config) i adapta'l: estos exemples reproduïxen el mapa real de sistema-disseny-ua, amb el kit ja a doc-projecte/ Els patrons són expressions regulars sobre rutes relatives; la documentació, rutes literals -el kit viu a doc-projecte/ des de kit-projecte 3.0.0.",
+  "_comentari_estructural": "Una regla que respon a un INVENTARI i no a un contingut ('si es crea o s'esborra un component, el catàleg que els llista ha de canviar') ha de dur \"nomes_naixement_o_mort\": true, o acusarà cada edició del cos d'un fitxer ja existent i acabareu apagant el guardia. Vegeu README.md § 'Regles d'esdeveniment estructural'. Cap regla d'este exemple la porta: totes responen a contingut.",
+  "exempcions": [
+    "^demos/",
+    "^ua-ds\\.(js|css)$",
+    "\\.(png|jpg|svg|ico)$",
+    "-model\\.md$",
+    "^locales/.*\\.json$"
+  ],
+  "regles": [
+    {
+      "nom": "tokens de disseny",
+      "codi": ["^src/design-system/.*token", "tokens?\\.css$"],
+      "documentacio": ["doc-projecte/tokens.md", "doc-projecte/DECISIONS.md"]
+    },
+    {
+      "nom": "components",
+      "codi": ["^components/", "^src/design-system/components/"],
+      "documentacio": [
+        "doc-projecte/components.md",
+        "doc-projecte/DECISIONS.md",
+        "doc-projecte/CONEIXEMENT-VIU.md"
+      ]
+    },
+    {
+      "nom": "arquitectura i build",
+      "codi": ["^build/", "^\\.github/workflows/"],
+      "documentacio": ["doc-projecte/ARCHITECTURE.md"]
+    },
+    {
+      "nom": "estandards de codi",
+      "codi": ["^Controllers/", "^Services/", "^Repositories/"],
+      "documentacio": [
+        "doc-projecte/ESTANDARDS.md",
+        "doc-projecte/DECISIONS.md"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+.claude/registre-disparadors.jsonl
+.claude/canari/
+.claude/auditoria-*.log
+node_modules/

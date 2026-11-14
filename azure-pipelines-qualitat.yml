@@ -1,0 +1,61 @@
+# Guardes de documentació i disciplina de tokens (scripts de kit-si-ua/ci-plantilla/).
+# Pipeline a banda de la principal a propòsit: ha de donar veredicte en segons, no en minuts.
+#
+# ATENCIÓ: en Azure Repos les PR no es disparen des del YAML sinó per política de branca: cal donar
+# d'alta esta pipeline i afegir-la a Branch policies > Build validation de cada branca de destí.
+# Sense eixe pas no corre mai i la PR es fusiona sense guarda.
+trigger: none
+
+# Un servidor propi no té agents de Microsoft (vmImage): cal un pool d'agents de casa, amb bash.
+pool:
+  name: Default
+
+steps:
+  # fetchDepth: 0 no és opcional. Azure clona en superficial per defecte, i amb un clon superficial
+  # `git diff base...head` no troba l'avantpassat comú: el check o peta o -pitjor- no veu cap
+  # fitxer canviat i acaba en verd. persistCredentials deixa fer el git fetch de la branca base.
+  - checkout: self
+    fetchDepth: 0
+    persistCredentials: true
+
+  # Node ha d'estar instal·lat a l'agent (18 o posterior). NodeTool@0 el baixaria d'internet, que un
+  # agent de casa pot no tindre.
+  - bash: node --version
+    displayName: Node de l'agent
+
+  # System.PullRequest.TargetBranch arriba com a 'refs/heads/main': els checks volen 'origin/main'.
+  # La branca base cal baixar-la a banda, perquè el clon de la PR no la porta.
+  - bash: |
+      set -e
+      branca="${SYSTEM_PULLREQUEST_TARGETBRANCH#refs/heads/}"
+      git fetch --no-tags origin "$branca"
+      echo "##vso[task.setvariable variable=baseRef]origin/$branca"
+    displayName: Resol la branca base
+
+  - bash: node kit-si-ua/ci-plantilla/comprova-documentacio.js --base $(baseRef) --head HEAD
+    displayName: comprova-documentacio
+  - bash: node kit-si-ua/ci-plantilla/comprova-tokens-hardcoded.js --base $(baseRef) --head HEAD
+    displayName: comprova-tokens-hardcoded
+  - bash: node kit-si-ua/ci-plantilla/comprova-antipatrons.js --base $(baseRef) --head HEAD
+    displayName: comprova-antipatrons
+  - bash: node kit-si-ua/ci-plantilla/comprova-frescor.js
+    displayName: comprova-frescor
+  - bash: node kit-si-ua/ci-plantilla/valida-documentacio.js --dir .
+    displayName: valida-documentacio
+  - bash: node kit-si-ua/ci-plantilla/comprova-secrets.js --base $(baseRef) --head HEAD
+    displayName: comprova-secrets
+  - bash: node kit-si-ua/ci-plantilla/comprova-tracabilitat.js
+    displayName: comprova-tracabilitat
+  - bash: node kit-si-ua/ci-plantilla/comprova-unicode-invisible.js --base $(baseRef) --head HEAD
+    displayName: comprova-unicode-invisible
+  - bash: node kit-si-ua/ci-plantilla/comprova-higiene.js --base $(baseRef) --head HEAD
+    displayName: comprova-higiene
+  # La descripció i les etiquetes de la PR només es poden llegir de l'API, amb el token de la pipeline.
+  - bash: node kit-si-ua/ci-plantilla/comprova-descripcio-mr.js
+    displayName: comprova-descripcio-mr
+    env:
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+  - bash: node kit-si-ua/ci-plantilla/comprova-origen-mr.js --warn
+    displayName: comprova-origen-mr
+    env:
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
