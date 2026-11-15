@@ -17,9 +17,15 @@ Pendent -taula fitxer/carpeta → contingut.
 
 ## Pipeline de build i distribució
 
-Pendent.
+- **Build i distribució**: pendent -encara no hi ha codi de plugins.
+- **CI de qualitat (activa)**: `.github/workflows/qualitat.yml`, a cada PR de GitHub. Corre els
+  checks de `kit-si-ua/ci-plantilla/` (documentació, secrets, antipatrons, higiene...) contra la
+  branca de destí. No porta `comprova-descripcio-mr.js` ni `comprova-origen-mr.js`
+  (vegeu `DECISIONS.md`, «MR a GitHub en lloc de TFS»).
+- **CI de qualitat (en repòs)**: `azure-pipelines-qualitat.yml`, per a quan el projecte torne a
+  TFS. No corre enlloc mentres les MR es facen a GitHub.
 
-> 💬 *Per a arrancar (les 3 seccions de dalt)*: este és el fitxer que la sessió d'arqueologia
+> 💬 _Per a arrancar (les 3 seccions de dalt)_: este és el fitxer que la sessió d'arqueologia
 > genera quasi sencer des del codi -demana a l'agent "llig l'estructura d'este repositori i els
 > fitxers de build i ompli Stack/Estructura/Pipeline d'ARCHITECTURE.md" (vegeu el skill
 > `ua-dotnet-api` i `ua-docs-projecte` § legacy). Revisa el resultat: descriu l'estat real, no
