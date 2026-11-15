@@ -214,6 +214,22 @@ Problema: [`problema.md`](./problema.md)
 Els criteris d'acceptació de RF-07 a RF-09, RF-15 i RF-16 s'escriuran quan es trie la faena que els construïx, amb
 una entrada a `## Canvis`.
 
+### Ajuda a l'usuari
+
+- **RF-10** — Guia de migració de Gmail a Roundcube: per a PDI i PTGAS que venen de Gmail. Diu on
+  està cada cosa que feien en Gmail i com es fa en Roundcube, també en una bústia d'unitat. En
+  valencià, castellà i anglés, en HTML i PDF. És la referència del CAU. — Prioritat:
+  **Imprescindible (v1)**, i ha d'estar publicada abans del gener de 2027. _Prova_: revisió de la
+  guia per part del CAU i PDF generat.
+  - Dada i permís: cap · toca autorització: no → Tier: **T0**
+- **RF-11** — Manual dels plugins: una secció per plugin, en valencià, castellà i anglés, en HTML i
+  PDF descarregable. — Prioritat: **Imprescindible (v1)** per als plugins v1. _Prova_: PDF generat en
+  el build i enllaç accessible des de Roundcube.
+  - Dada i permís: cap · toca autorització: no → Tier: **T0**
+- **RF-12** — Tour de les funcionalitats noves: la primera vegada que una persona troba una
+  funcionalitat d'un plugin, si es pot fer sense tocar el nucli ni sobreescriure plantilles. —
+  Prioritat: **Posterior**, a l'espera de saber si és viable (decisió pendent).
+
 ## Requisits no funcionals
 
 - **Volum**: unes 4.500 persones de PDI i PTGAS, més de 1.000 venen de Gmail, i hi ha unes 500 adreces
@@ -272,17 +288,10 @@ s'aplica a Roundcube, que té la seua pròpia localització de plugins. Com es f
 
 ## Ajuda a l'usuari
 
-- **RF-10 — Guia de migració de Gmail a Roundcube**: per a PDI i PTGAS que venen de Gmail. Diu on
-  està cada cosa que feien en Gmail i com es fa en Roundcube, també en una bústia d'unitat. En
-  valencià, castellà i anglés, en HTML i PDF. És la referència del CAU. — Prioritat:
-  **Imprescindible (v1)**, i ha d'estar publicada abans del gener de 2027. _Prova_: revisió de la
-  guia per part del CAU i PDF generat.
-- **RF-11 — Manual dels plugins**: una secció per plugin, en valencià, castellà i anglés, en HTML i
-  PDF descarregable. — Prioritat: **Imprescindible (v1)** per als plugins v1. _Prova_: PDF generat en
-  el build i enllaç accessible des de Roundcube.
-- **RF-12 — Tour de les funcionalitats noves**: la primera vegada que una persona troba una
-  funcionalitat d'un plugin, si es pot fer sense tocar el nucli ni sobreescriure plantilles. —
-  Prioritat: **Posterior**, a l'espera de saber si és viable (decisió pendent).
+Aplica: per als que deixen Gmail, Roundcube i els plugins són nous. Els requisits són RF-10 (guia de
+migració), RF-11 (manual dels plugins) i RF-12 (tour). Estan definits a «Requisits funcionals» §
+«Ajuda a l'usuari», perquè la comprovació de traçabilitat (`kit-si-ua/ci-plantilla/producte.js`) només
+llig els RF d'eixa secció.
 
 ## Restriccions, riscos i dependències
 
@@ -427,3 +436,7 @@ Validat per: owner del projecte — Data: 2026-11-15 _(confirmat a la conversa)_
   només la de persona — Per què: decisió de l'owner («Les etiquetes es conserven quan un missatge passa
   a Enviats»). Precisa un criteri de la v1 sense canviar l'abast. La va prendre la mateixa persona que
   ha validat el PRD, en esta conversa.
+- 2026-11-15 — RF-10, RF-11, RF-12 — Es mouen de «## Ajuda a l'usuari» a «Requisits funcionals» §
+  «Ajuda a l'usuari», amb el format `- **RF-XX** —` i la dada i el tier de RF-10 i RF-11. No canvia el
+  contingut — Per què: `comprova-tracabilitat.js` només llig els RF de «Requisits funcionals» i
+  donava error perquè el pla cita RF-10 i RF-11 a E-05.
