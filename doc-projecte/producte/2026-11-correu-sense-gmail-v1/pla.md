@@ -199,13 +199,15 @@ troben res que comptar (2026-11-15).
 
 ### Calibratge
 
-| Entrega | Fase | Mida estimada | Rol | Hores reals | Min. agent actiu | Min. entre torns (≤30 / >30) | Desviació i per què |
-| ------- | ---- | ------------- | --- | ----------: | ---------------: | ---------------------------: | ------------------- |
+| Entrega                 | Fase | Mida estimada | Rol      | Hores reals | Min. agent actiu | Min. entre torns (≤30 / >30) | Desviació i per què                                                                                                                                               |
+| ----------------------- | ---- | ------------- | -------- | ----------: | ---------------: | ---------------------------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| — (problema, PRD i pla) | 1    | —             | Analista |           3 |               18 |                     159 / 83 | Sense entrega: el problema i el PRD són de tot el projecte. Minuts de les branques `SENSE-ID-mr-github` i `SENSE-ID-correu-sense-gmail-v1`, on s'ha fet la sessió |
 
 ### Registre d'hores
 
-| Data | Entrega | Fase | Rol | Hores | Moment |
-| ---- | ------- | ---- | --- | ----: | ------ |
+| Data       | Entrega | Fase | Rol      | Hores | Moment  |
+| ---------- | ------- | ---- | -------- | ----: | ------- |
+| 2026-11-15 | —       | 1    | Analista |     3 | traspàs |
 
 ## Context Delta
 
